@@ -28,6 +28,14 @@ Helm is a package manager for Kubernetes, similar to how you might use `apt` for
 - Charts use **Templates** to generate the Kubernetes manifest files (like Deployment, Service, etc.). These templates are written in Go template language and are rendered using the values you provide.
 - This makes Helm very flexible, as you can use the same Chart with different values to deploy slightly different versions of the same application.
 
+###  Secret Management
+
+- Helm allows for the management of secrets (e.g., passwords, API keys) using Kubernetes secrets. You can store sensitive data in Kubernetes secrets and reference them in Helm Charts.
+- Encrypted Secrets: Helm also supports tools like Helm Secrets to encrypt and manage secrets securely.
+  
+### Best Practices: It's crucial to avoid hardcoding secrets in values.yaml or templates and to use Kubernetes secrets or external secret management tools.
+
+
 ## Why Use Helm?
 
 - **Simplification**: Helm simplifies the deployment process by packaging all the resources into a single Chart.
