@@ -120,3 +120,119 @@ Rolling Back:
 
 If the upgrade causes issues, you can roll back to the first release.
 
+# Summary:
+Helm simplifies the deployment process by packaging your Kubernetes resources into a Chart. You can customize deployments with ease, manage upgrades and rollbacks, and avoid the complexity of manually handling multiple YAML files. Helm’s core concepts—Charts, Releases, Values, and Templates—work together to provide a streamlined experience for managing applications in Kubernetes.
+
+# Helm commands:
+
+## Installation and Setup
+
+```bash
+# Install Helm (macOS) using Homebrew
+brew install helm
+
+# Install Helm (Linux) using the installation script
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+# Install Helm (Linux) manually
+wget https://get.helm.sh/helm-v3.13.0-linux-amd64.tar.gz # Download Helm binary
+tar -zxvf helm-v3.13.0-linux-amd64.tar.gz # Extract the archive
+sudo mv linux-amd64/helm /usr/local/bin/helm # Move Helm binary to PATH
+helm version # Verify Helm installation
+```
+
+## Managing Charts
+
+```
+# Install a Chart
+helm install <release-name> <chart-name> # Install a Helm Chart with the specified release name
+
+# Install a Chart with Custom Values
+helm install <release-name> <chart-name> --set key1=value1,key2=value2 # Install a Chart and override default values
+
+# Install a Chart with a Custom Values File
+helm install <release-name> <chart-name> -f custom-values.yaml # Install a Chart using a custom values file
+```
+
+## Managing Releases
+
+```
+# List Installed Releases
+helm list # List all Helm releases in the current Kubernetes namespace
+
+# Upgrade a Release
+helm upgrade <release-name> <chart-name> # Upgrade an existing Helm release to a new version of the Chart
+
+# Rollback a Release
+helm rollback <release-name> <revision-number> # Rollback a release to a previous version
+
+# Uninstall (Delete) a Release
+helm uninstall <release-name> # Delete a Helm release from the Kubernetes cluster
+
+# Get Release History
+helm history <release-name> # Show the history of a Helm release, including all revisions
+
+# Get Release Status
+helm status <release-name> # Display the current status of a release
+```
+
+## Chart Management
+
+```
+# Search for Charts
+helm search repo <keyword> # Search for Charts in the Helm repositories that match the keyword
+
+# View Chart Information
+helm show chart <chart-name> # Display detailed information about a Chart
+
+# View Chart Values
+helm show values <chart-name> # Show the default values of a Chart
+
+# View Chart Templates
+helm show templates <chart-name> # Display the template files within a Chart
+```
+
+## Helm Repositories
+
+```
+# Add a Helm Repository
+helm repo add <repo-name> <repo-url> # Add a new Helm repository to your local Helm configuration
+
+# List Helm Repositories
+helm repo list # List all Helm repositories added to your local Helm configuration
+
+# Update Helm Repositories
+helm repo update # Fetch the latest Charts from all added repositories
+
+# Remove a Helm Repository
+helm repo remove <repo-name> # Remove a Helm repository from your local configuration
+```
+
+## Debugging and Troubleshooting
+
+```
+# Dry Run an Installation/Upgrade
+helm install <release-name> <chart-name> --dry-run --debug # Simulate an installation or upgrade, showing the output without applying it
+
+# Render Templates Only
+helm template <release-name> <chart-name> # Render the templates of a Chart locally without deploying them
+
+# Check for Helm Installation Issues
+helm get all <release-name> # Retrieve all information (manifests, notes, etc.) for a specific release
+```
+
+## Advanced Commands
+
+```
+# Rollback to a Specific Kubernetes Manifest
+helm rollback <release-name> <revision-number> --wait # Rollback to a specific revision and wait for the resources to be ready
+
+# Test a Release
+helm test <release-name> # Run tests associated with a Helm Chart to verify the release
+
+# Package a Local Chart
+helm package <chart-directory> # Package a local Chart directory into a .tgz file
+
+# Lint a Chart
+helm lint <chart-directory> # Check a Chart for potential issues before deployment
+```
